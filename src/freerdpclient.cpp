@@ -133,7 +133,6 @@ FreeRdpClient::FreeRdpClient(PointerChangeSink *pointerSink)
       pointerChangeSink(pointerSink) {
 
     if (instanceCount == 0) {
-        freerdp_channels_global_init();
         freerdp_register_addin_provider(channelAddinLoadHook, 0);
         freerdp_wsa_startup();
     }
@@ -152,7 +151,6 @@ FreeRdpClient::~FreeRdpClient() {
 
     instanceCount--;
     if (instanceCount == 0) {
-        freerdp_channels_global_uninit();
         freerdp_wsa_cleanup();
     }
 }
